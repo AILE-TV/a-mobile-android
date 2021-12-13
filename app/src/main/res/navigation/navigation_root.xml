@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootNavId"
+    app:startDestination="@id/splash">
+
+    <include app:graph="@navigation/navigation_auth" />
+
+    <fragment
+        android:id="@+id/splash"
+        android:name="com.ailetv.mobile.ui.splash.Splash"
+        android:label=" "
+        tools:layout="@layout/fragment_splash" />
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.ailetv.mobile.ui.dashboard.DashboardFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_dashboard" />
+
+
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.ailetv.mobile.ui.TestFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_test" />
+
+    <action
+        android:id="@+id/action_global_auth"
+        app:destination="@id/authNavId"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/rootNavId"
+        app:popUpToInclusive="true"/>
+
+    <action
+        android:id="@+id/action_global_splash"
+        app:destination="@id/splash"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/rootNavId"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_global_test"
+        app:destination="@id/testFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/rootNavId"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_global_mainFragment"
+        app:destination="@id/mainFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/rootNavId"
+        app:popUpToInclusive="true" />
+</navigation>

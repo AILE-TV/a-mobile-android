@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.ailetv.mobile.data.model.resource.ServicePOJO" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iconImg"
+            android:layout_width="18dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toStartOf="@+id/titleTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleTxt"
+            app:tint="@color/black"
+            bind:srcRes="@{model.contractType.iconRes}" />
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="74dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@{model.serviceType}"
+            android:textColor="@color/dove_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/statusTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dateTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="74dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@{model.dateTime}"
+            android:textColor="@color/dove_gray"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/statusTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTxt"
+            tools:text="22.22.2222" />
+
+        <View
+            android:id="@+id/underline"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="40dp"
+            android:background="@color/alto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titleTxt"
+            app:layout_constraintTop_toBottomOf="@+id/dateTxt" />
+
+        <TextView
+            android:id="@+id/statusTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:ellipsize="start"
+            android:fontFamily="@font/roboto_regular"
+            android:maxWidth="120dp"
+            android:singleLine="true"
+            android:text='@{model.status.equals("OK") ? @string/resolved : @string/looking}'
+            android:textColor='@{model.status.equals("OK") ? @color/green : @color/colorRedFF}'
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="22.22.2222" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

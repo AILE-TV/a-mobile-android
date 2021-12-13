@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1033139324583",
+    "project_id": "aile-tv",
+    "storage_bucket": "aile-tv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033139324583:android:3a79ecb47357eabcdbfd82",
+        "android_client_info": {
+          "package_name": "com.ailetv.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033139324583-70lhd9dsnd4f58nudpse6fdh8qdsmmb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT1qyjBBsdsS6Eq0q37Ee8nQ09Yhxhk2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033139324583-70lhd9dsnd4f58nudpse6fdh8qdsmmb3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1033139324583-qokvs21ah7jqfpem0jvhlld4t04n4sqv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ailetv.mobile",
+                "app_store_id": "1589245451"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

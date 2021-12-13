@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ailetv.mobile.data.enums.UiState" />
+
+        <variable
+            name="viewModel"
+            type="com.ailetv.mobile.ui.dashboard.main.MainVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:onRefreshListener="@{() -> viewModel.getCustomerListData()}"
+            app:refreshing="@{viewModel.uiState == UiState.LOADING}"
+            bind:checkMotionLayoutState="@{viewModel.uiState}">
+
+            <com.ailetv.mobile.widget.StateView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:onRetryClick="@{()->viewModel.getCustomerListData()}"
+                app:sv_viewState="@{viewModel.uiState}">
+
+                <androidx.constraintlayout.motion.widget.MotionLayout
+                    android:id="@+id/motionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutDescription="@xml/scene_main"
+                    tools:background="@drawable/window_background">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bonusBtn"
+                        style="?materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="6dp"
+                        android:layout_marginTop="2dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/roboto_regular"
+                        android:letterSpacing="0"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:textColor="?colorOnPrimary"
+                        android:textSize="18sp"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_bonus"
+                        app:iconGravity="textTop"
+                        app:iconPadding="8dp"
+                        app:iconTint="@null"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:rippleColor="@color/rippleDark"
+                        app:strokeWidth="0dp"
+                        android:text="@{viewModel.bonusBalance}"
+                        tools:text="12 000" />
+
+                    <TextView
+                        android:id="@+id/nameTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="42dp"
+                        android:layout_marginTop="120dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="@{viewModel.customer.customerName}"
+                        android:textColor="?colorOnPrimary"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Haşımzadə Ramin Rasim" />
+
+                    <TextView
+                        android:id="@+id/codeTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="42dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text='@{@string/code_d(viewModel.customer.customerId)}'
+                        android:textColor="?colorOnPrimary"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/nameTxt"
+                        tools:text="028025" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addressBtn"
+                        style="?materialButtonOutlinedStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginHorizontal="42dp"
+                        android:layout_marginTop="20dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center_vertical"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:text="@{viewModel.customer.address}"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:backgroundTint="?android:colorBackground"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_dropdown"
+                        app:iconGravity="end"
+                        app:iconTint="@null"
+                        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+                        app:layout_constraintTop_toBottomOf="@+id/codeTxt"
+                        app:strokeWidth="0dp"
+                        tools:text="Rashid Behbutov 59" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="32dp"
+                        android:background="?android:colorBackground"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addressBtn"
+                        bind:radiusTop="@{20}"
+                        tools:listitem="@layout/item_contract" />
+
+                    <com.ailetv.mobile.widget.StateView
+                        android:id="@+id/contractsStateView"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:animateLayoutChanges="true"
+                        android:background="?android:colorBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/recyclerView"
+                        app:onRetryClick="@{()->viewModel.getContractListData()}"
+                        app:sv_viewState="@{viewModel.contractsUiState}"
+                        bind:isVisibleElseGone="@{viewModel.contractsUiState != UiState.SUCCESS}"
+                        bind:radiusTop="@{20}"
+                        tools:visibility="gone">
+
+                        <include layout="@layout/layout_loading" />
+
+                        <include layout="@layout/layout_error" />
+
+                        <include layout="@layout/layout_empty" />
+                    </com.ailetv.mobile.widget.StateView>
+                </androidx.constraintlayout.motion.widget.MotionLayout>
+
+                <include layout="@layout/layout_loading_on_primary" />
+
+                <include layout="@layout/layout_error_on_primary" />
+            </com.ailetv.mobile.widget.StateView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

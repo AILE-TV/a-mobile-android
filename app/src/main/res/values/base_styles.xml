@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.AileTv.BaseTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="errorIconDrawable">@null</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="endIconTint">@null</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="boxCollapsedPaddingTop">-24dp</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <item name="prefixTextAppearance">@style/PrefixTextAppearance</item>
+    </style>
+
+    <style name="Widget.AileTv.BaseTextInputEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/input_bg</item>
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="Widget.AileTv.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowEnterAnimation">@anim/scale_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_out</item>
+
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+
+    <style name="PrefixTextAppearance" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="HintTextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

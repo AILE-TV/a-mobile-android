@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_color">#DE202A</color>
+    <color name="red">#DE202A</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="dark">#333333</color>
+    <color name="blue">#0000FF</color>
+    <color name="gray">#7F7F7F</color>
+
+    <color name="rippleDark">#1f000000</color>
+    <color name="rippleLight">#42ffffff</color>
+    <color name="supernova">#FECC00</color>
+    <color name="alizarin_crimson">#E31E24</color>
+    <color name="thunderbird">#D1181E</color>
+    <color name="colorRedFF">#FF0404</color>
+    <color name="transparent">#00000000</color>
+    <color name="alto">#DCDCDC</color>
+    <color name="dove_gray">#6E6E6E</color>
+    <color name="green">#0CF807</color>
+    <color name="whatsapp">#35C142</color>
+    <color name="facebook">#4E6ABD</color>
+    <color name="instagram">#E31E24</color>
+</resources>

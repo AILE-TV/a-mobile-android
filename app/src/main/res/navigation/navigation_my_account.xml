@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myAccountNavId"
+    app:startDestination="@id/myAccountFragment">
+
+    <fragment
+        android:id="@+id/myAccountFragment"
+        android:name="com.ailetv.mobile.ui.dashboard.myAccount.MyAccountFragment"
+        android:label=""
+        tools:layout="@layout/fragment_my_account" />
+
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="com.ailetv.mobile.ui.web.WebFragment"
+        android:label=""
+        tools:layout="@layout/fragment_web">
+
+        <argument android:name="title" />
+        <argument android:name="url" />
+        <argument
+            android:name="postData"
+            app:nullable="true" />
+        <argument
+            android:name="webCanGoBack"
+            app:argType="boolean" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_webFragment"
+        app:destination="@id/webFragment" />
+</navigation>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ailetv.mobile.utils.extensions.StringExtKt" />
+
+        <variable
+            name="viewModel"
+            type="com.ailetv.mobile.ui.auth.login.LoginVM" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/scene_auth"
+        tools:background="@drawable/window_background">
+
+        <ImageView
+            android:id="@+id/logoImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/ic_logo_full_horizontal"
+            app:layout_constraintHeight_max="220dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="46dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/register_via_phone_number"
+            android:textColor="?colorOnPrimary"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoImg" />
+
+        <View
+            android:id="@+id/roundView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="126dp"
+            android:background="?android:colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoImg"
+            bind:radiusTop="@{20}" />
+
+        <TextView
+            android:id="@+id/phoneTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="56dp"
+            android:layout_marginTop="42dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/phone"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/roundView" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/phoneContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="56dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_outlined_edit_text"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/phoneTitle">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="4dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                app:ccpDialog_cornerRadius="10dp"
+                app:ccpDialog_showTitle="false"
+                app:ccp_autoDetectCountry="true"
+                app:ccp_contentColor="?editTextColor"
+                app:ccp_excludedCountries="AM"
+                app:ccp_showFlag="false"
+                app:ccp_showNameCode="false"
+                app:layout_constraintBottom_toBottomOf="@+id/phoneTil"
+                app:layout_constraintStart_toStartOf="@+id/phoneTil" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneTil"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:paddingTop="0dp"
+                app:expandedHintEnabled="false"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toTopOf="@+id/roundView"
+                app:prefixText="">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneEdt"
+                    style="@style/TextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:digits="1234567890 "
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:maxLength="16"
+                    android:maxLines="1"
+                    android:paddingHorizontal="0dp"
+                    android:singleLine="true"
+                    android:text="@={viewModel.phoneNumber}"
+                    tools:text="233242" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/registerBtn"
+            style="@style/MaterialButtonSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:text="@string/registration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoneTil"
+            app:layout_constraintVertical_bias="1"
+            bind:onSingleClick="@{()-> viewModel.login()}" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

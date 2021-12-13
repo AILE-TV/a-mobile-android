@@ -1,0 +1,66 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">Aile Mobile</string>
+    <string name="app_notification_channel_id" translatable="false">Aile mobile</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
+    <string name="are_you_sure">Əminsiniz?</string>
+    <string name="ok">Oldu</string>
+    <string name="cancel">Ləğv et</string>
+    <string name="yes">Bəli</string>
+    <string name="no">Xeyr</string>
+    <string name="resend_code_all_caps">KODU YENİDƏN GÖNDƏRMƏK</string>
+
+    <string name="registration">Qeydiyyat</string>
+    <string name="register_via_phone_number">Mobil nömrə ilə qeydiyyat</string>
+    <string name="phone">Telefon</string>
+    <string name="login">Giriş</string>
+    <string name="i_didnt_get_the_code">Kodu almadım</string>
+
+    <string name="menu_title_main">Əsas</string>
+    <string name="menu_title_companies">Kampaniyalar</string>
+    <string name="menu_title_services">Servis</string>
+    <string name="menu_title_notifications">Bildirişlər</string>
+    <string name="menu_title_my_account">Profilim</string>
+    <string name="contact_us">Bizimlə əlaqə</string>
+    <string name="live_tv">Canlı TV</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instagram</string>
+    <string name="logout">Çıxış</string>
+    <string name="code_d">Kod: %d</string>
+    <string name="balance_">Balance:</string>
+    <string name="tariff_">Tarif:</string>
+    <string name="status_">Status:</string>
+    <string name="internet">Internet</string>
+    <string name="tv">TV</string>
+    <string name="ip_tv">IP TV</string>
+    <string name="section_services">Xidmətlər</string>
+    <string name="bonus">Bonus</string>
+    <string name="pay">Ödəniş</string>
+    <string name="package_name">Paket</string>
+    <string name="status">Status</string>
+    <string name="standart">Standard</string>
+    <string name="tariff">Tarif</string>
+    <string name="balance">Balans</string>
+    <string name="last_payment_date">Son ödəmə</string>
+    <string name="internet_contract">Internet Müqavilə</string>
+    <string name="tv_contract">TV Müqavilə</string>
+    <string name="ip_tv_contract">IP TV Müqavilə</string>
+    <string name="debt">Borc</string>
+    <string name="s_azn">%s AZN</string>
+    <string name="retry_all_caps">YENİDƏN CƏHD ET</string>
+    <string name="d_xal">%s xal</string>
+    <string name="otp_title">Telefonunuza göndərilən kodu daxil edin</string>
+    <string name="resolved">Həll olunub</string>
+    <string name="looking">Baxılır</string>
+    <string name="toast_bonus_transfer_successfully">Bonusunuz uğurla köçürüldü</string>
+    <string name="toast_payment_successfully">Ödənişiniz uğurla həyata keçdi</string>
+    <string name="toast_payment_unsuccessfully">Ödənişiniz uğursuz oldu</string>
+    <string name="payment_amount">Ödənilən məbləğ</string>
+    <string name="wait_please">Zəhmet olmasa gözləyin</string>
+    <string name="no_internet">İnternet bağlantısı yoxdur</string>
+    <string name="transfer">Köçürmək</string>
+    <string name="showcase_bonus_hint">Bonuslar haqqında ətraflı məlumatı buradan əldə edə bilərsiniz.</string>
+    <string name="app_update_dialog_title">Yeni versiya mövcuddur</string>
+    <string name="app_update_dialog_message">Siz artıq dəstəklənməyən Aile Mobile versiyasından istifadə edirsiniz. Lütfən, Aile Mobile istifadə etmək üçün proqramın ən yeni versiyasına güncəlləyin. Təşəkkürlər!</string>
+</resources>

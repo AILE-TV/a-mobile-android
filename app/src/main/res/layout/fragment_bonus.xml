@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ailetv.mobile.data.enums.UiState" />
+
+        <variable
+            name="viewModel"
+            type="com.ailetv.mobile.ui.dashboard.main.bonus.BonusVM" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:fitsSystemWindows="true"
+        app:layoutDescription="@xml/scene_bonus"
+        tools:background="@drawable/window_background">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:titleTextColor="?colorOnPrimary" />
+
+        <ImageView
+            android:id="@+id/logoImg"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_logo_full_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/bonus"
+            android:textColor="?colorOnPrimary"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/roundView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/roundView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="170dp"
+            android:background="?android:colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            bind:radiusTop="@{20}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/infoBtn"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="12dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_outline_info_24"
+            app:iconGravity="textTop"
+            app:iconPadding="0dp"
+            app:iconTint="@null"
+            app:layout_constraintEnd_toEndOf="@+id/roundView"
+            app:layout_constraintTop_toTopOf="@+id/roundView"
+            app:strokeWidth="0dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bonusLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/transferToBtn"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="300dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/roundView">
+
+            <ImageView
+                android:id="@+id/bonusImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_total_bonus_big" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bonusTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="64dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@{@string/d_xal(viewModel.balance)}"
+                android:textColor="@color/alizarin_crimson"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="@+id/bonusImg"
+                app:layout_constraintStart_toStartOf="@+id/bonusImg"
+                app:layout_constraintTop_toTopOf="@+id/bonusImg"
+                tools:text="10000 xal" />
+
+            <TextView
+                android:id="@+id/amountTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="10 AZN"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/bonusImg"
+                app:layout_constraintStart_toStartOf="@+id/bonusImg"
+                app:layout_constraintTop_toBottomOf="@+id/bonusTxt" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/transferToBtn"
+            style="?materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="56dp"
+            android:layout_marginBottom="24dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:maxLines="1"
+            android:paddingStart="16dp"
+            android:textAllCaps="false"
+            android:textColor="@color/black_50"
+            android:textSize="17sp"
+            app:backgroundTint="?android:colorBackground"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/ic_dropdown"
+            app:iconGravity="end"
+            app:iconTint="@null"
+            app:layout_constraintBottom_toTopOf="@+id/transferBtn"
+            app:strokeColor="@color/alto"
+            app:strokeWidth="1dp"
+            tools:text="TV hesabım" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/transferBtn"
+            style="@style/MaterialButtonSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="40dp"
+            android:text="@string/transfer"
+            bind:enabled="@{viewModel.payEnable}"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.ailetv.mobile.widget.StateView
+            android:id="@+id/stateView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?android:colorBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            bind:isVisible="@{viewModel.uiState != UiState.SUCCESS}"
+            app:sv_viewState="@{viewModel.uiState}"
+            app:onRetryClick="@{()-> viewModel.getBonusBalance()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/roundView"
+            bind:radiusTop="@{20}">
+
+            <include layout="@layout/layout_loading" />
+
+            <include layout="@layout/layout_error" />
+        </com.ailetv.mobile.widget.StateView>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

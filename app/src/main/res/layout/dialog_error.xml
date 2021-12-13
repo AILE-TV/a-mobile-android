@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.ailetv.mobile.data.model.resource.ErrorDialogModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:colorBackground"
+        android:paddingVertical="8dp"
+        bind:radius="@{12}">
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingHorizontal="24dp"
+            android:text="@{model.title}"
+            android:textColor="?colorOnBackground"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:isVisibleElseGone="@{model.title.length() > 0}"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/messageTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="8dp"
+            android:text="@{model.message}"
+            android:textColor="?colorOnBackground"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/titleTxt"
+            app:layout_goneMarginTop="8dp"
+            bind:isVisibleElseGone="@{model.message.length() > 0}"
+            tools:text="message" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/negativeBtn"
+            style="?materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="48dp"
+            android:minHeight="36dp"
+            android:onClick="@{model.negativeButton.onClickListener}"
+            android:textColor="?colorOnBackground"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/positiveBtn"
+            app:layout_constraintTop_toBottomOf="@+id/messageTxt"
+            app:layout_constraintVertical_bias="0.111"
+            app:strokeWidth="0dp"
+            bind:textRes='@{model.negativeButton.text}'
+            bind:isVisibleElseGone="@{model.negativeButton.text != 0}"
+            tools:text="@string/cancel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/positiveBtn"
+            style="?materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="48dp"
+            android:minHeight="36dp"
+            android:onClick="@{model.positiveButton.onClickListener}"
+            android:textColor="?colorOnBackground"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/messageTxt"
+            app:strokeWidth="0dp"
+            tools:text="ok"
+            bind:textRes='@{ model.positiveButton.text}'
+            bind:isVisibleElseGone="@{model.positiveButton.text != 0}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

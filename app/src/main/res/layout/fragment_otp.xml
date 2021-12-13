@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ailetv.mobile.utils.extensions.StringExtKt" />
+
+        <variable
+            name="viewModel"
+            type="com.ailetv.mobile.ui.auth.otp.OtpVM" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/scene_auth"
+        tools:background="@drawable/window_background">
+
+        <ImageView
+            android:id="@+id/logoImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/ic_logo_full_horizontal"
+            app:layout_constraintHeight_max="220dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="46dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/otp_title"
+            android:textColor="?colorOnPrimary"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoImg" />
+
+        <View
+            android:id="@+id/roundView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="126dp"
+            android:background="?android:colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoImg"
+            bind:radiusTop="@{20}" />
+
+        <EditText
+            android:id="@+id/otpEdt"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0"
+            android:background="@color/transparent"
+            android:cursorVisible="false"
+            android:digits="1234567890"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:imeOptions="actionDone"
+            android:inputType="numberPassword"
+            android:longClickable="false"
+            android:maxLength="4"
+            android:text="@={viewModel.otp}"
+            android:textSize="0sp"
+            app:layout_constraintBottom_toBottomOf="@+id/code1"
+            app:layout_constraintEnd_toEndOf="@+id/code4"
+            app:layout_constraintStart_toStartOf="@+id/code1"
+            app:layout_constraintTop_toTopOf="@+id/code1"
+            bind:selectionActionModeDisable="@{true}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/code1"
+            style="@style/MaterialButtonPinCode"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            android:text='@{viewModel.otp.length() > 0 ? viewModel.otp.substring(0,1) : ""}'
+            app:layout_constraintEnd_toStartOf="@+id/code2"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/roundView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/code2"
+            style="@style/MaterialButtonPinCode"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:text='@{viewModel.otp.length() > 1 ? viewModel.otp.substring(1,2) : ""}'
+            app:layout_constraintEnd_toStartOf="@+id/code3"
+            app:layout_constraintStart_toEndOf="@+id/code1"
+            app:layout_constraintTop_toTopOf="@+id/code1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/code3"
+            style="@style/MaterialButtonPinCode"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:text='@{viewModel.otp.length() > 2 ? viewModel.otp.substring(2,3) : ""}'
+            app:layout_constraintBottom_toBottomOf="@+id/code1"
+            app:layout_constraintEnd_toStartOf="@+id/code4"
+            app:layout_constraintStart_toEndOf="@+id/code2"
+            app:layout_constraintTop_toTopOf="@+id/code1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/code4"
+            style="@style/MaterialButtonPinCode"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:text='@{viewModel.otp.length() > 3 ? viewModel.otp.substring(3,4) : ""}'
+            app:layout_constraintBottom_toBottomOf="@+id/code1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/code3"
+            app:layout_constraintTop_toTopOf="@+id/code1" />
+
+        <TextView
+            android:id="@+id/resendTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/i_didnt_get_the_code"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/code1" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resendBtn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="@{viewModel.resendEnable ? 1f : 0.5f}"
+            android:fontFamily="@font/roboto_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:letterSpacing="0"
+            android:minHeight="28dp"
+            android:paddingVertical="0dp"
+            android:text="@string/resend_code_all_caps"
+            android:textAllCaps="true"
+            android:textColor="?colorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/code3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resendTitle"
+            bind:enabled="@{viewModel.resendEnable}"
+            bind:onSingleClick="@{()-> viewModel.resendOtp()}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginBtn"
+            style="@style/MaterialButtonSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:text="@string/login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            bind:enabled="@{viewModel.verifyButtonEnable}"
+            bind:onSingleClick="@{()-> viewModel.checkOtp()}" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

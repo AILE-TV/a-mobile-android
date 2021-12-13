@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorPrimaryDarkVariant" format="color" />
+    <attr name="inActiveColor" format="color" />
+
+
+    <!-- TextInputLayout -->
+    <attr name="inputLayoutNormalHintColor" format="color" />
+    <attr name="inputLayoutFocusedHintColor" format="color" />
+    <attr name="inputLayoutHelperTextColor" format="color" />
+    <attr name="inputLayoutFocusedHelperTextColor" format="color" />
+    <attr name="inputLayoutErrorHelperTextColor" format="color" />
+
+    <!-- TextInputEditText -->
+    <attr name="inputEditTextTextColor" format="color" />
+    <attr name="inputEditTextCursorColor" format="color" />
+
+    <!-- TextInputEditText -->
+    <attr name="boxStrokeNormalColor" format="color" />
+    <attr name="boxStrokeFocusedColor" format="color" />
+    <attr name="boxStrokeErrorColor" format="color" />
+    <attr name="boxBackgroundColor" format="color" />
+
+    <attr name="bottomNavigationViewCheckedColor" format="color" />
+    <attr name="bottomNavigationViewUncheckedColor" format="color" />
+</resources>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ailetv.mobile.data.enums.ContractTypeEnum" />
+
+        <variable
+            name="model"
+            type="com.ailetv.mobile.data.model.resource.ContractPOJO" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="42dp"
+        android:layout_marginBottom="24dp"
+        android:translationZ="30dp"
+        app:cardBackgroundColor="?colorSecondary"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:rippleColor="@color/rippleDark">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp">
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/typeImg"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:src='@{model.contractType == ContractTypeEnum.INTERNET ? @drawable/ic_internet : model.contractType == ContractTypeEnum.TV ? @drawable/ic_tv : @drawable/ic_ip_tv  }'
+                android:tint="@color/service_item_color"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:enabled="@{model.isActive()}"
+                tools:src="@drawable/ic_ip_tv" />
+
+            <TextView
+                android:id="@+id/statusTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text="@string/status_"
+                android:textColor="@color/service_item_color"
+                android:textSize="12sp"
+                android:alpha="0.7"
+                app:layout_constraintBottom_toTopOf="@+id/tariffTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                bind:enabled="@{model.isActive()}" />
+
+            <TextView
+                android:id="@+id/tariffTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text="@string/tariff_"
+                android:textColor="@color/service_item_color"
+                android:textSize="12sp"
+                android:alpha="0.7"
+                app:layout_constraintBottom_toTopOf="@+id/balanceTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                bind:enabled="@{model.isActive()}" />
+
+            <TextView
+                android:id="@+id/balanceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text="@string/balance_"
+                android:textColor="@color/service_item_color"
+                android:textSize="12sp"
+                android:alpha="0.7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                bind:enabled="@{model.isActive()}" />
+
+            <View
+                android:id="@+id/guideline"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:background="@color/white" />
+
+            <TextView
+                android:id="@+id/nameTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text='@{model.contractType == ContractTypeEnum.INTERNET ? @string/internet : model.contractType == ContractTypeEnum.TV ? @string/tv : @string/ip_tv  }'
+                android:textColor="@color/service_item_color"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="@+id/typeImg"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/typeImg"
+                bind:enabled="@{model.isActive()}"
+                tools:text="IP TV" />
+
+            <TextView
+                android:id="@+id/statusTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text="@{model.status}"
+                android:textColor="@color/service_item_color"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/tariffTxt"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                bind:enabled="@{model.isActive()}"
+                tools:text="Aktiv" />
+
+            <TextView
+                android:id="@+id/tariffTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text="@{model.tariff}"
+                android:textColor="@color/service_item_color"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/balanceTxt"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                bind:enabled="@{model.isActive()}"
+                tools:text="23 AZN/ay" />
+
+            <TextView
+                android:id="@+id/balanceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text='@{@string/s_azn(model.balance)}'
+                android:textColor="@color/service_item_color"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                bind:enabled="@{model.isActive()}"
+                tools:text="@string/s_azn" />
+
+            <TextView
+                android:id="@+id/dateTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:includeFontPadding="false"
+                android:text="@{model.finalDate}"
+                android:textColor="@color/service_item_color"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:enabled="@{model.isActive()}"
+                tools:text="8/06/21" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="14dp"
+                android:progress="75"
+                app:indicatorColor="@color/white"
+                app:indicatorSize="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:showAnimationBehavior="outward"
+                app:showDelay="1000"
+                app:trackColor="@color/transparent"
+                app:trackThickness="12dp"
+                bind:circleProgressIndicatorColor='@{model.isActive() ? @color/white : @color/dove_gray}'
+                tools:showAnimationBehavior="none" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

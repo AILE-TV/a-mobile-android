@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/main_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/thunderbird</item>
+        <item name="colorSecondary">@color/supernova</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:ambientShadowAlpha">0.09</item>
+        <item name="android:spotShadowAlpha">0.09</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+<!--        <item name="android:windowBackground">@drawable/launch_screen</item>-->
+        <item name="android:textColorSecondary">@color/white</item>
+
+        <item name="colorAccent">@color/red</item>
+        <item name="inActiveColor">@color/gray</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+
+        <!-- BottomNavigationView -->
+        <item name="bottomNavigationViewCheckedColor">@color/alizarin_crimson</item>
+        <item name="bottomNavigationViewUncheckedColor">@color/dark</item>
+
+        <!-- TextInputEditText -->
+        <item name="inputEditTextTextColor">@color/gray</item>
+        <item name="inputEditTextCursorColor">@color/red</item>
+
+        <!-- TextInputLayout -->
+        <item name="inputLayoutHelperTextColor">@color/gray</item>
+        <item name="inputLayoutFocusedHelperTextColor">@color/gray</item>
+        <item name="inputLayoutErrorHelperTextColor">@color/red</item>
+        <item name="inputLayoutNormalHintColor">@color/gray</item>
+        <item name="inputLayoutFocusedHintColor">@color/gray</item>
+        <item name="boxStrokeFocusedColor">@color/alto</item>
+        <item name="boxStrokeNormalColor">@color/alto</item>
+        <item name="boxStrokeErrorColor">@color/red</item>
+        <item name="boxBackgroundColor">@color/transparent</item>
+    </style>
+
+    <style name="AppThemeDialog" parent="Widget.AileTv.Dialog">
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+</resources>

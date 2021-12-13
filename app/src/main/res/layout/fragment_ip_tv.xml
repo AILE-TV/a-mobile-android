@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ailetv.mobile.data.enums.UiState" />
+
+        <variable
+            name="viewModel"
+            type="com.ailetv.mobile.ui.dashboard.main.ipTv.IpTvVM" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:layoutDescription="@xml/scene_ip_tv"
+        tools:background="@drawable/window_background">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:titleTextColor="?colorOnPrimary" />
+
+        <ImageView
+            android:id="@+id/logoImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_logo_tv"
+            app:layout_constraintBottom_toTopOf="@+id/titleTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
+            android:maxLines="1"
+            android:text="@string/tv_contract"
+            android:textColor="?colorOnPrimary"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/roundView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoImg" />
+
+        <View
+            android:id="@+id/roundView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/service_detail_round_view_margin_top"
+            android:background="?android:colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            bind:radiusTop="@{20}" />
+
+        <com.ailetv.mobile.widget.KeyValueView
+            android:id="@+id/lastPaymentDateView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/service_detail_item_padding_vertical"
+            android:layout_marginBottom="@dimen/service_detail_item_padding_vertical"
+            android:paddingStart="56dp"
+            app:key="@string/last_payment_date"
+            app:layout_constraintBottom_toTopOf="@+id/balanceView"
+            app:layout_constraintTop_toTopOf="@+id/roundView"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:value="@{viewModel.finalDate}" />
+
+        <com.ailetv.mobile.widget.KeyValueView
+            android:id="@+id/balanceView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/service_detail_item_padding_vertical"
+            android:paddingStart="56dp"
+            app:key="@string/balance"
+            app:layout_constraintBottom_toTopOf="@+id/tariffView"
+            app:layout_constraintTop_toBottomOf="@+id/lastPaymentDateView"
+            app:value='@{@string/s_azn(viewModel.balance)}' />
+
+        <com.ailetv.mobile.widget.KeyValueView
+            android:id="@+id/tariffView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/service_detail_item_padding_vertical"
+            android:paddingStart="56dp"
+            app:key="@string/tariff"
+            app:layout_constraintBottom_toTopOf="@+id/packageView"
+            app:layout_constraintTop_toBottomOf="@+id/balanceView"
+            app:value='@{viewModel.tariff}' />
+
+        <com.ailetv.mobile.widget.KeyValueView
+            android:id="@+id/packageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/service_detail_item_padding_vertical"
+            android:paddingStart="56dp"
+            app:key="@string/package_name"
+            bind:isVisibleElseGone="@{!viewModel.packet.empty}"
+            app:layout_constraintBottom_toTopOf="@+id/statusView"
+            app:layout_constraintTop_toBottomOf="@+id/tariffView"
+            app:value="@{viewModel.packet}" />
+
+        <com.ailetv.mobile.widget.KeyValueView
+            android:id="@+id/statusView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/service_detail_item_padding_vertical"
+            android:paddingStart="56dp"
+            app:key="@string/status"
+            app:layout_constraintBottom_toTopOf="@+id/payBtn"
+            app:layout_constraintTop_toBottomOf="@+id/packageView"
+            app:value="@{viewModel.status}"
+            app:valueColor="@color/red" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/payBtn"
+            style="@style/MaterialButtonSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:text="@string/pay"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

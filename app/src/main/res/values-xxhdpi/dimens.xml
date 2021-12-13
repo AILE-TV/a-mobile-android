@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="service_detail_round_view_margin_top">230dp</dimen>
+    <dimen name="service_detail_item_padding_vertical">24dp</dimen>
+</resources>

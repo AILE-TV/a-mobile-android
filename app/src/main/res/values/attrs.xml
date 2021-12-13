@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TextInputLayout -->
+    <declare-styleable name="TextInputLayout">
+        <attr name="boxStrokeNormalColor" />
+        <attr name="boxStrokeFocusedColor" />
+        <attr name="boxStrokeErrorColor" />
+        <attr name="errorText" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="StateView">
+        <attr name="sv_errorViewId" format="reference" />
+        <attr name="sv_loadingViewId" format="reference" />
+        <attr name="sv_emptyViewId" format="reference" />
+        <attr name="sv_retryViewId" format="reference" />
+        <attr name="sv_refreshLayoutId" format="reference" />
+        <attr name="onRetryClick" format="string" />
+
+        <attr name="sv_viewState" format="enum">
+            <enum name="content" value="0" />
+            <enum name="loading" value="1" />
+            <enum name="error" value="2" />
+            <enum name="empty" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="KeyValueView">
+        <attr name="key" format="string"/>
+        <attr name="value" format="string"/>
+        <attr name="valueColor" format="color" />
+    </declare-styleable>
+</resources>

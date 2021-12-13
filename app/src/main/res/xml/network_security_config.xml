@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">mobileapi.aile.tv</domain>
+        <trust-anchors>
+            <certificates src="@raw/aile_tv_certificate"/>
+        </trust-anchors>
+
+        <domain-config cleartextTrafficPermitted="true">
+            <domain includeSubdomains="true">amobileapi.datalearning.az</domain>
+        </domain-config>
+
+        <domain-config cleartextTrafficPermitted="true">
+            <domain includeSubdomains="true">aile.tv</domain>
+        </domain-config>
+    </domain-config>
+</network-security-config>

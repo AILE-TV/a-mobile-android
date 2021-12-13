@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ailetv.mobile.ui.web.WebVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            bind:fitsSystemWindowsToolbar="@{true}"
+            tools:title="@string/app_name" />
+
+        <com.ailetv.mobile.widget.StateView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?android:colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:onRetryClick="@{()->viewModel.reloadPage()}"
+            app:sv_viewState="@{viewModel.uiState}">
+
+
+            <im.delight.android.webview.AdvancedWebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <include layout="@layout/layout_loading" />
+
+            <include layout="@layout/layout_error" />
+        </com.ailetv.mobile.widget.StateView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

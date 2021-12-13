@@ -1,0 +1,57 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        kotlin_version = '1.5.10'
+        koin_version = '2.2.2'
+        timber_version = '5.0.1'
+        coroutines_version = '1.5.0'
+        lifecycle_version = '2.2.0'
+        navigation_version = '2.3.5'
+        retrofit_version = '2.9.0'
+        multidex_version = '2.0.1'
+        gson_version = '2.9.0'
+        glide_version = '4.12.0'
+        interceptor_version = '4.9.0'
+        roundedimageview_version = '2.3.0'
+        coroutines_adapter_version = '0.9.2'
+        coroutines_test_version = '1.5.0'
+        mockito_version = '2.21.0'
+        work_version = "2.7.0"
+        lottieVersion = "3.7.0"
+    }
+
+    repositories {
+        google()
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        def nav_version = "2.3.1"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+
+        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+
+        maven {
+            url "https://jitpack.io"
+        }
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
