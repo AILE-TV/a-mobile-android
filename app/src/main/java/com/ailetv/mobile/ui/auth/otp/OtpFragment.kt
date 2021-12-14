@@ -47,8 +47,11 @@ class OtpFragment : BaseFragment() {
 
     private fun initObservers() {
         viewModel.navigateToNext.observe(viewLifecycleOwner) {
+            val context = context?.applicationContext
+
             FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-                MyFirebaseMessagingService.sendRegistrationToServer(activity, task.result)
+                if (task.isSuccessful)
+                    MyFirebaseMessagingService.sendRegistrationToServer(context, task.result)
             }
 
             findNavControllerRoot()?.navigate(R.id.action_global_mainFragment)
