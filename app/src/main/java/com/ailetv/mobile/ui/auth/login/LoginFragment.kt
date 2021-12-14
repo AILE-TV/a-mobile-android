@@ -11,6 +11,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import com.ailetv.mobile.databinding.FragmentLoginBinding
 import com.ailetv.mobile.ui.base.BaseFragment
+import com.ailetv.mobile.utils.extensions.trimSpace
 import com.ailetv.mobile.utils.hideSoftKeyboard
 import com.ailetv.mobile.utils.showSoftKeyboard
 import com.hbb20.CountryCodePicker
@@ -43,14 +44,6 @@ class LoginFragment : BaseFragment() {
                 binding.motionLayout.transitionToStart()
         }
 
-        binding.countryCode.setPhoneNumberValidityChangeListener {
-            binding.phoneEdt.filters = arrayOf(
-                InputFilter.LengthFilter(
-                    if (it) binding.phoneEdt.text.toString().length else 24
-                )
-            )
-            binding.registerBtn.isEnabled = it
-        }
 
         binding.countryCode.textView_selectedCountry.doAfterTextChanged {
             viewModel.countryCode.value = it.toString()
@@ -72,8 +65,28 @@ class LoginFragment : BaseFragment() {
                 binding.phoneTil.showSoftKeyboard()
             }
         })
+
+        onCountryChange()
+        binding.countryCode.setOnCountryChangeListener {
+            onCountryChange()
+        }
+
+        binding.phoneEdt.doAfterTextChanged {
+            binding.registerBtn.isEnabled =
+                if (isAzerbaijan())
+                    it.toString().trimSpace().length == 9
+                else true
+        }
         binding.countryCode.registerCarrierNumberEditText(binding.phoneEdt)
     }
+
+    private fun onCountryChange() {
+        binding.phoneEdt.filters = arrayOf(
+            InputFilter.LengthFilter(if (isAzerbaijan()) 12 else 18)
+        )
+    }
+
+    private fun isAzerbaijan() = binding.countryCode.selectedCountryCode == "994"
 
     private fun initObservers() {
         viewModel.navigateToNext.observe(viewLifecycleOwner) {

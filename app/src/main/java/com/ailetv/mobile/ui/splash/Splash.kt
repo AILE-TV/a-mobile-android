@@ -1,7 +1,6 @@
 package com.ailetv.mobile.ui.splash
 
 import android.os.Bundle
-import android.se.omapi.Session
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,19 +8,15 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.ailetv.mobile.R
-import com.ailetv.mobile.data.enums.PushNotificationType
-import com.ailetv.mobile.data.enums.PushNotificationType.*
+import com.ailetv.mobile.data.enums.PushNotificationType.PUSH
 import com.ailetv.mobile.data.model.resource.ButtonModel
 import com.ailetv.mobile.data.model.resource.ErrorDialogModel
 import com.ailetv.mobile.data.model.resource.PushNotificationModel
 import com.ailetv.mobile.databinding.FragmentSplashBinding
-import com.ailetv.mobile.manager.SessionManager
 import com.ailetv.mobile.ui.EventBus
 import com.ailetv.mobile.ui.base.BaseFragment
 import com.ailetv.mobile.utils.extensions.intentPlayStore
-import com.google.firebase.messaging.FirebaseMessaging
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 import toJson
 
 
@@ -36,6 +31,7 @@ class Splash : BaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.executePendingBindings()
+
 
         initObservables()
         checkNotificationData()
@@ -74,7 +70,6 @@ class Splash : BaseFragment() {
     }
 
     private fun checkNotificationData() {
-        Timber.e(requireActivity().intent.getStringExtra("type"))
         requireActivity().intent.extras
             .toJson<PushNotificationModel>()?.let {
                 requireActivity().intent.removeExtra("type")
