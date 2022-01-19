@@ -43,7 +43,7 @@ class BonusVM(private val repo: BonusRepo) : BaseViewModel() {
     }
 
     fun transferBonus() = executeInBackground(showProgressDialog = true) {
-        repo.payBonus(id = contractPOJO.value?.contractId).onSuccess {
+        repo.payBonus(id = contractPOJO.value?.id).onSuccess {
             _transferSuccess.emit(true)
         }
     }

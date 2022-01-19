@@ -30,12 +30,20 @@ object NotificationUtils {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtras(bundle)
 
-        val contentPendingIntent = PendingIntent.getActivity(
-            context,
-            NOTIFICATION_ID,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        val contentPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getActivity(
+                context,
+                NOTIFICATION_ID,
+                intent,
+                PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        } else {
+            PendingIntent.getActivity(
+                context,
+                NOTIFICATION_ID,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        }
 
         val channelId = context.getString(R.string.app_notification_channel_id)
 
