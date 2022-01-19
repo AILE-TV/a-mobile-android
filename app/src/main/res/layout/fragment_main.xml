@@ -53,6 +53,7 @@
                         android:minWidth="0dp"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="4dp"
+                        android:text="@{viewModel.bonusBalance}"
                         android:textColor="?colorOnPrimary"
                         android:textSize="18sp"
                         app:cornerRadius="10dp"
@@ -64,7 +65,6 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:rippleColor="@color/rippleDark"
                         app:strokeWidth="0dp"
-                        android:text="@{viewModel.bonusBalance}"
                         tools:text="12 000" />
 
                     <TextView
@@ -130,6 +130,7 @@
                         android:layout_height="0dp"
                         android:layout_marginTop="32dp"
                         android:background="?android:colorBackground"
+                        android:splitMotionEvents="false"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/addressBtn"
