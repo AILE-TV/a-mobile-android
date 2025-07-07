@@ -38,8 +38,8 @@ object DeviceUtil {
             val pInfo = context.packageManager.getPackageInfo(context.packageName, 0)
             appVersionFull = pInfo.versionName
 
-            val v1 = pInfo.versionName.split(Pattern.quote(".").toRegex()).toTypedArray()
-            appVersion = v1[0] + "." + v1[1]
+            val v1 = pInfo.versionName?.split(Pattern.quote(".").toRegex())?.toTypedArray()
+            appVersion = v1?.get(0) + "." + v1?.get(0)
         } catch (e: PackageManager.NameNotFoundException) {
         }
     }

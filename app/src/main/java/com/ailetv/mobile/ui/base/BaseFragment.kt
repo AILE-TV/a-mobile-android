@@ -16,6 +16,7 @@ import com.ailetv.mobile.utils.dialogs.ErrorDialog
 import com.ailetv.mobile.utils.dialogs.ProgressDialog
 import com.ailetv.mobile.utils.extensions.appCompatActivity
 import com.ailetv.mobile.utils.extensions.supportActionBar
+import androidx.core.graphics.drawable.toDrawable
 
 
 abstract class BaseFragment : Fragment() {
@@ -76,7 +77,6 @@ abstract class BaseFragment : Fragment() {
     open fun hideActionBar() = false
     open fun isLightStatusBarText() = true
     open fun getActionBarBackground() = ColorDrawable(Color.TRANSPARENT)
-    open fun getWindowBackground(): Drawable? = ColorDrawable(
-        context.getColorAttrs(R.attr.colorPrimary)
-    )
+    open fun getWindowBackground(): Drawable? =
+        requireContext().getColor(R.color.main_color).toDrawable()
 }

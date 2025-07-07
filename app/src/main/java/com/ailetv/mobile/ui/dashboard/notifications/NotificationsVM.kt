@@ -7,7 +7,6 @@ import com.ailetv.mobile.data.model.resource.NotificationPOJO
 import com.ailetv.mobile.data.networking.onSuccess
 import com.ailetv.mobile.data.repo.NotificationsRepo
 import com.ailetv.mobile.ui.base.BaseViewModel
-import removeItem
 
 class NotificationsVM(private val repo: NotificationsRepo) : BaseViewModel() {
     private val _uiState = MutableLiveData<UiState>()
@@ -37,7 +36,15 @@ class NotificationsVM(private val repo: NotificationsRepo) : BaseViewModel() {
 
     fun delete(pojo: NotificationPOJO) = executeInBackground(showProgressDialog = true) {
         repo.delete(pojo.id).onSuccess {
-            _list.removeItem(pojo)
+            _list.removeNotificationPojo(pojo)
+        }
+    }
+
+    private fun MutableLiveData<List<NotificationPOJO>>.removeNotificationPojo(item: NotificationPOJO?) {
+        val newList = this.value?.toMutableList() ?: mutableListOf()
+        if (item != null && newList.contains(item)) {
+            newList.remove(item)
+            this.value = newList
         }
     }
 

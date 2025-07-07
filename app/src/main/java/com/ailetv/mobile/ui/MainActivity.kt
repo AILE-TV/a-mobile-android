@@ -1,7 +1,14 @@
 package com.ailetv.mobile.ui
 
+import android.Manifest
+import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.FloatingWindow
 import androidx.navigation.NavController
@@ -13,6 +20,7 @@ import com.ailetv.mobile.databinding.ActivityMainBinding
 import com.ailetv.mobile.ui.base.BaseActivity
 import com.ailetv.mobile.utils.KeyboardEventListener
 import com.ailetv.mobile.utils.StatusBarUtil
+import com.google.firebase.FirebaseApp
 import getColorInt
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import setColorFilter
@@ -23,8 +31,18 @@ class MainActivity : BaseActivity() {
     private lateinit var navController: NavController
     private var lastDestinationId = 0
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (!isGranted) {
+            Toast.makeText(this, "İcazə verilmədi. Bildiriş göstərilməyəcək.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        askNotificationPermission()
+        FirebaseApp.initializeApp(this)
         StatusBarUtil.setTranslucent(this)
         setContentView(binding.root)
 
@@ -32,11 +50,36 @@ class MainActivity : BaseActivity() {
         initNavController()
 
         KeyboardVisibilityEvent.registerEventListener(this) {
-            if(!it)
+            if (!it)
                 currentFocus?.clearFocus()
         }
 
         KeyboardEventListener(binding.root, this)
+    }
+
+    private fun askNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            when {
+                ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED -> {}
+                shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
+                    AlertDialog.Builder(this)
+                        .setTitle("Bildirişlər üçün icazə tələb olunur")
+                        .setMessage("Əhəmiyyətli yeniliklər barədə sizə bildiriş göndərə bilmək üçün icazəyə ehtiyacımız var.")
+                        .setPositiveButton("OK") { _, _ ->
+                            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                        }
+                        .setNegativeButton("İmtina et") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }
+                else -> {
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+            }
+        }
     }
 
     private fun initEventBus() {

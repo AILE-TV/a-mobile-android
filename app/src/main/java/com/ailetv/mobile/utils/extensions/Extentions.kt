@@ -119,15 +119,6 @@ fun locationOf(lat: Any?, lng: Any?): Location {
     return location
 }
 
-fun MutableLiveData<*>.removeItem(item: Any?) {
-    val list = (value as? List<*>)?.toMutableList()
-
-    if (list?.contains(item) == true) {
-        list.remove(item)
-        value = list
-    }
-}
-
 inline fun <reified T> Bundle?.toJson(): T? {
     return this?.keySet()?.let {
         val json = JSONObject()

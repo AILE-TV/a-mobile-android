@@ -72,6 +72,8 @@ class MainFragment : BaseFragment() {
                     findNavController().navigate(MainFragmentDirections.toTvFragment(it))
                 ContractTypeEnum.IP_TV ->
                     findNavController().navigate(MainFragmentDirections.toIpTvFragment(it))
+
+                else -> {}
             }
         }
     }
