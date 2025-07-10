@@ -20,6 +20,9 @@ import com.ailetv.mobile.utils.extensions.initToolbar
 import com.ailetv.mobile.utils.extensions.onBackPressedCallback
 import com.ailetv.mobile.utils.extensions.toBitmap
 import com.ailetv.mobile.utils.extensions.toast
+import com.nmssalman.bubbleshowcasenew.BubbleShowCase
+import com.nmssalman.bubbleshowcasenew.BubbleShowCaseBuilder
+import com.nmssalman.bubbleshowcasenew.BubbleShowCaseListener
 import getColorInt
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -86,44 +89,44 @@ class BonusFragment : BaseFragment() {
         }
     }
 
-//    private fun showCase() {
-//        var showing = true
-//
-//        val case = BubbleShowCaseBuilder(requireActivity())
-//            .title(getString(R.string.showcase_bonus_hint))
-//            .backgroundColor(context.getColorInt(R.color.white))
-//            .textColor(context.getColorInt(R.color.black))
-//            .targetView(binding.infoBtn)
-//            .listener(object : BubbleShowCaseListener {
-//                override fun onBackgroundDimClick(bubbleShowCase: BubbleShowCase) {
-//                    showing = false
-//                    bubbleShowCase.dismiss()
-//                    viewModel.getBonusHint()
-//                }
-//
-//                override fun onTargetClick(bubbleShowCase: BubbleShowCase) {
-//                    showing = false
-//                    viewModel.getBonusHint()
-//                }
-//
-//                override fun onBubbleClick(bubbleShowCase: BubbleShowCase) {}
-//                override fun onCloseActionImageClick(bubbleShowCase: BubbleShowCase) {
-//                    showing = false
-//                }
-//            })
-//            .show()
-//
-//        onBackPressedCallback {
-//            if (showing) {
-//                case.dismiss()
-//
-//                showing = false
-//            } else
-//                findNavController().navigateUp()
-//        }
-//
-//        SessionManager.showCaseBonusHint = false
-//    }
+    private fun showCase() {
+        var showing = true
+
+        val case = BubbleShowCaseBuilder(requireActivity())
+            .title(getString(R.string.showcase_bonus_hint))
+            .backgroundColor(context.getColorInt(R.color.white))
+            .textColor(context.getColorInt(R.color.black))
+            .targetView(binding.infoBtn)
+            .listener(object : BubbleShowCaseListener {
+                override fun onBackgroundDimClick(bubbleShowCase: BubbleShowCase) {
+                    showing = false
+                    bubbleShowCase.dismiss()
+                    viewModel.getBonusHint()
+                }
+
+                override fun onTargetClick(bubbleShowCase: BubbleShowCase) {
+                    showing = false
+                    viewModel.getBonusHint()
+                }
+
+                override fun onBubbleClick(bubbleShowCase: BubbleShowCase) {}
+                override fun onCloseActionImageClick(bubbleShowCase: BubbleShowCase) {
+                    showing = false
+                }
+            })
+            .show()
+
+        onBackPressedCallback {
+            if (showing) {
+                case.dismiss()
+
+                showing = false
+            } else
+                findNavController().navigateUp()
+        }
+
+        SessionManager.showCaseBonusHint = false
+    }
 
     private fun showBonusBalance() {
         binding.bonusImg.postDelayed({
@@ -133,8 +136,8 @@ class BonusFragment : BaseFragment() {
             binding.amountTxt.isVisible = false
 
             binding.motionLayout.transitionToEnd{
-//                if (SessionManager.showCaseBonusHint)
-//                    showCase()
+                if (SessionManager.showCaseBonusHint)
+                    showCase()
             }
         }, 100)
     }
