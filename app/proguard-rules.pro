@@ -88,3 +88,60 @@
 -dontwarn org.openjsse.javax.net.ssl.SSLParameters
 -dontwarn org.openjsse.javax.net.ssl.SSLSocket
 -dontwarn org.openjsse.net.ssl.OpenJSSE
+
+-keep class androidx.navigation.** { *; }
+-keepclassmembers class * {
+    @androidx.navigation.Navigator$Name *;
+}
+-keep @androidx.navigation.Navigator$Name class * {*;}
+
+# --- REFLECTION SUPPORT ---
+
+# Keep all members (fields/methods) for all classes (reflection-safe)
+-keepclassmembers class * {
+    *;
+}
+
+# Keep all annotations (prevents R8 from stripping annotated classes)
+-keep @interface *
+-keep @* class *
+
+# Keep all public classes and their public members
+-keep public class * {
+    public *;
+}
+
+# Keep classes with @Keep annotation
+-keepclassmembers class * {
+   @androidx.annotation.Keep *;
+}
+
+# Keep Kotlin metadata (used by reflection in Kotlin)
+-keepclassmembers class kotlin.Metadata { *; }
+
+# Disable obfuscation (optional – for debugging; remove this line if you want shrinking)
+-dontobfuscate
+
+# --- ANDROIDX NAVIGATION SUPPORT ---
+# Keep all navigation-related classes and annotations
+-keep class androidx.navigation.** { *; }
+-keepclassmembers class * {
+    @androidx.navigation.Navigator$Name *;
+}
+-keep @androidx.navigation.Navigator$Name class * {*;}
+
+
+# Gson reflection support
+-keep class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+-keep class com.yourpackage.model.** { *; }
+
+# Hilt (Dependency Injection)
+-keep class dagger.hilt.** { *; }
+-keep class * extends dagger.hilt.EntryPoint
+
+# Android DataBinding
+-keep class **BR { *; }
+-keep class * extends androidx.databinding.ViewDataBinding { *; }
+
